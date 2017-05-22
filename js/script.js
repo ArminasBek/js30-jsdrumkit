@@ -3,13 +3,11 @@ function playSound(e){
 	var audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
 	//console.log(e.keyCode);
 	var key = document.querySelector(`.key[data-key="${e.keyCode}"]`);  
-	if(!audio) return // stop the function from running if key is not assigned
+	if(!audio) return; // stop the function from running if key is not assigned
 	audio.currentTime = 0; //rewind the start.
 	audio.play();
 	key.classList.add('playing');
 };
-
-
 
 function removeTransition(e){
 	if(e.propertyName !== 'transform') return;
@@ -19,10 +17,11 @@ function removeTransition(e){
 function mouseSound(e) {
 	//console.log(e);
 	var audioM = document.querySelector(`audio[data-key="${e.target.parentElement.attributes[0].nodeValue}"]`)
+    var key = document.querySelector(`.key[data-key="${e.target.parentElement.attributes[0].nodeValue}"]`);
+    if(!audioM) return;
     audioM.currentTime = 0;
     audioM.play()
-
-
+    key.classList.add('playing');
 }
 
 var keys = document.querySelectorAll('.key');
